@@ -682,17 +682,28 @@ footer{
 
     align-items: center;
 
-    gap: 10px;
+    gap: 12px;
 }
 
 .logo-img{
 
-    width: 50px;
+    width: 55px;
 
-    height: 50px;
+    height: 55px;
 
     border-radius: 50%;
 
     object-fit: cover;
+
+    border: 2px solid white;
+}
+
+.logo{
+
+    color: white;
+
+    font-size: 32px;
+
+    font-weight: bold;
 }
 }
