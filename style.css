@@ -705,5 +705,7 @@ footer{
     font-size: 32px;
 
     font-weight: bold;
+
+    display: block;
 }
 }
