@@ -1,3 +1,10 @@
+import { auth } from "./firebase.js";
+
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 ```javascript id="combined-working-script"
 /* ================= IMAGE SLIDER ================= */
 
@@ -115,15 +122,32 @@ const loginForm = document.getElementById("loginForm");
 
 if(loginForm){
 
-    loginForm.addEventListener("submit", function(event){
+    loginForm.addEventListener("submit", async function(event){
 
         event.preventDefault();
 
-        alert("Login Successful!");
+        const email =
+            document.getElementById("loginEmail").value;
 
-        loginForm.reset();
+        const password =
+            document.getElementById("loginPassword").value;
 
-        window.location.href = "index.html";
+        try{
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            alert("Login Successful!");
+
+            window.location.href = "dashboard.html";
+
+        }catch(error){
+
+            alert(error.message);
+        }
     });
 }
 
@@ -133,18 +157,37 @@ const signupForm = document.getElementById("signupForm");
 
 if(signupForm){
 
-    signupForm.addEventListener("submit", function(event){
+    signupForm.addEventListener("submit", async function(event){
 
         event.preventDefault();
 
-        alert("Signup Successful!");
+        const name =
+            document.getElementById("name").value;
 
-        signupForm.reset();
+        const email =
+            document.getElementById("email").value;
 
-        window.location.href = "login.html";
+        const password =
+            document.getElementById("password").value;
+
+        try{
+
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            alert("Signup Successful!");
+
+            window.location.href = "login.html";
+
+        }catch(error){
+
+            alert(error.message);
+        }
     });
 }
-
 /* ================= LOGOUT BUTTON ================= */
 
 const logoutBtn = document.getElementById("logoutBtn");
