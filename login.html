@@ -16,13 +16,9 @@
 
 <body>
 
-    <!-- ================= LOGIN SECTION ================= -->
-
     <section class="login-section">
 
         <div class="login-container">
-
-            <!-- LEFT SIDE -->
 
             <div class="login-info">
 
@@ -35,21 +31,23 @@
 
             </div>
 
-            <!-- RIGHT SIDE -->
-
             <div class="login-form-box">
 
                 <h2>Login</h2>
 
                 <form id="loginForm">
 
-                    <input type="email"
-                           placeholder="Enter Email"
-                           required>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter Email"
+                        required>
 
-                    <input type="password"
-                           placeholder="Enter Password"
-                           required>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter Password"
+                        required>
 
                     <button type="submit">
                         Login
@@ -73,7 +71,7 @@
 
     </section>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 
 </body>
 
