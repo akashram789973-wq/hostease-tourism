@@ -5,26 +5,22 @@ import {
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-```javascript id="combined-working-script"
 /* ================= IMAGE SLIDER ================= */
 
 let slideIndex = 0;
 
 const slides = document.querySelectorAll(".slides");
 
-function showSlides(){
-
-    if(slides.length > 0){
+function showSlides() {
+    if (slides.length > 0) {
 
         slides.forEach(slide => {
-
             slide.classList.remove("active");
         });
 
         slideIndex++;
 
-        if(slideIndex > slides.length){
-
+        if (slideIndex > slides.length) {
             slideIndex = 1;
         }
 
@@ -32,46 +28,41 @@ function showSlides(){
     }
 }
 
-/* START SLIDER */
-
-if(slides.length > 0){
-
+if (slides.length > 0) {
     showSlides();
-
     setInterval(showSlides, 3000);
 }
 
 /* ================= BOOK POPUP ================= */
 
 const bookBtn = document.getElementById("bookBtn");
-
 const popup = document.getElementById("popup");
 
-if(bookBtn && popup){
+if (bookBtn && popup) {
 
     bookBtn.addEventListener("click", () => {
-
         popup.style.display = "flex";
     });
 }
 
 /* ================= CLOSE POPUP ================= */
 
-function closePopup(){
+function closePopup() {
 
-    if(popup){
-
+    if (popup) {
         popup.style.display = "none";
     }
 }
+
+window.closePopup = closePopup;
 
 /* ================= CONTACT FORM ================= */
 
 const contactForm = document.querySelector("#contact form");
 
-if(contactForm){
+if (contactForm) {
 
-    contactForm.addEventListener("submit", function(event){
+    contactForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
@@ -83,18 +74,15 @@ if(contactForm){
 
 /* ================= HEADER SCROLL EFFECT ================= */
 
-window.addEventListener("scroll", function(){
+window.addEventListener("scroll", function () {
 
     const header = document.querySelector("header");
 
-    if(header){
+    if (header) {
 
-        if(window.scrollY > 50){
-
+        if (window.scrollY > 50) {
             header.style.background = "rgba(0,0,0,0.9)";
-        }
-        else{
-
+        } else {
             header.style.background = "rgba(0,0,0,0.6)";
         }
     }
@@ -104,9 +92,9 @@ window.addEventListener("scroll", function(){
 
 const bookingForm = document.getElementById("bookingForm");
 
-if(bookingForm){
+if (bookingForm) {
 
-    bookingForm.addEventListener("submit", function(event){
+    bookingForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
@@ -120,9 +108,9 @@ if(bookingForm){
 
 const loginForm = document.getElementById("loginForm");
 
-if(loginForm){
+if (loginForm) {
 
-    loginForm.addEventListener("submit", async function(event){
+    loginForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
@@ -132,7 +120,7 @@ if(loginForm){
         const password =
             document.getElementById("loginPassword").value;
 
-        try{
+        try {
 
             await signInWithEmailAndPassword(
                 auth,
@@ -144,7 +132,7 @@ if(loginForm){
 
             window.location.href = "dashboard.html";
 
-        }catch(error){
+        } catch (error) {
 
             alert(error.message);
         }
@@ -155,9 +143,9 @@ if(loginForm){
 
 const signupForm = document.getElementById("signupForm");
 
-if(signupForm){
+if (signupForm) {
 
-    signupForm.addEventListener("submit", async function(event){
+    signupForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
@@ -170,7 +158,7 @@ if(signupForm){
         const password =
             document.getElementById("password").value;
 
-        try{
+        try {
 
             await createUserWithEmailAndPassword(
                 auth,
@@ -180,21 +168,24 @@ if(signupForm){
 
             alert("Signup Successful!");
 
+            signupForm.reset();
+
             window.location.href = "login.html";
 
-        }catch(error){
+        } catch (error) {
 
             alert(error.message);
         }
     });
 }
+
 /* ================= LOGOUT BUTTON ================= */
 
 const logoutBtn = document.getElementById("logoutBtn");
 
-if(logoutBtn){
+if (logoutBtn) {
 
-    logoutBtn.addEventListener("click", function(event){
+    logoutBtn.addEventListener("click", function (event) {
 
         event.preventDefault();
 
@@ -208,9 +199,9 @@ if(logoutBtn){
 
 const searchInput = document.getElementById("searchInput");
 
-if(searchInput){
+if (searchInput) {
 
-    searchInput.addEventListener("keyup", function(){
+    searchInput.addEventListener("keyup", function () {
 
         let filter = searchInput.value.toLowerCase();
 
@@ -220,12 +211,9 @@ if(searchInput){
 
             let name = card.getAttribute("data-name");
 
-            if(name.includes(filter)){
-
+            if (name && name.toLowerCase().includes(filter)) {
                 card.style.display = "block";
-            }
-            else{
-
+            } else {
                 card.style.display = "none";
             }
         });
@@ -239,23 +227,21 @@ const cards = document.querySelectorAll(".card");
 cards.forEach(card => {
 
     card.addEventListener("mouseenter", () => {
-
         card.style.transform = "translateY(-10px)";
     });
 
     card.addEventListener("mouseleave", () => {
-
         card.style.transform = "translateY(0)";
     });
 });
-```
+
 /* ================= PAYMENT FORM ================= */
 
 const paymentForm = document.getElementById("paymentForm");
 
-if(paymentForm){
+if (paymentForm) {
 
-    paymentForm.addEventListener("submit", function(event){
+    paymentForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
@@ -263,6 +249,6 @@ if(paymentForm){
 
         paymentForm.reset();
 
-       window.location.href = "dashboard.html";
+        window.location.href = "dashboard.html";
     });
 }
